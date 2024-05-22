@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+// required to get $orange variable
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+$primary: #ff7f02; // set the $primary variable
+$white: #fff; // set the $white variable
+.checkbox-checked {
+  color: red; // Replace with your desired color
+}
+
+// merge with existing $theme-colors map
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary,
+  )
+);
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+h3,
+label {
+  font-weight: normal;
+  margin-bottom: 0.5em;
+}
+
+::placeholder {
+  opacity: 0.3 !important;
+}
+
+.btn-primary {
+  color: #fff !important;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}

@@ -1,0 +1,348 @@
+<div class="w-100 h-100 d-flex align-items-center" style="position: relative">
+  <div
+    class="border rounded container p-3"
+    style="
+      min-height: 450px;
+      max-width: 720px;
+      position: relative;
+      padding-bottom: 70px !important;
+    "
+  >
+    @if(isLoading() === true) {
+    <div class="d-flex h-100 w-100 align-items-center justify-content-center">
+      <div
+        class="spinner-grow me-2 text-primary"
+        role="status"
+        aria-hidden="true"
+      ></div>
+      <h3 class="m-0">Lade Daten...</h3>
+    </div>
+
+    } @else {
+    <!-- id check -->
+    @if(invalidId() == true) {
+    <div class="alert alert-danger" role="alert">
+      Die ID ist ungültig. Bitte überprüfen Sie die URL.
+    </div>
+    } @else {
+
+    <!-- progress -->
+    @if(page() < 7) {
+    <div class="pager">{{ page() }} / 6</div>
+    }
+
+    <!-- page 1 -->
+    @if(page() === 1) {
+    <h2>Für wen benötigen Sie Unterstützung?</h2>
+
+    <h3>Wählen Sie bitte eine Option aus.</h3>
+    <input
+      type="radio"
+      [(ngModel)]="isSelf"
+      [value]="true"
+      class="btn-check"
+      name="options"
+      id="radioSelf"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioSelf"
+      >Für mich selbst</label
+    >
+
+    <input
+      type="radio"
+      class="btn-check"
+      name="options"
+      id="radioOther"
+      [(ngModel)]="isSelf"
+      [value]="false"
+    />
+    <label class="btn btn-outline-primary" for="radioOther"
+      >Für jemand anderen</label
+    >
+    }
+
+    <!-- page 2 -->
+    @if(page() ===2) {
+    <h2>Wo wird Hilfe benötigt?</h2>
+
+    <label>Anrede, Vor- und Nachname</label>
+    <div class="input-group">
+      <select
+        class="form-control"
+        [(ngModel)]="salutation"
+        placeholder="Anrede"
+      >
+        <option value="0">Herr</option>
+        <option value="1">Frau</option>
+      </select>
+      <input
+        type="text"
+        class="form-control"
+        maxlength="150"
+        placeholder="Vorname"
+        [(ngModel)]="firstName"
+      />
+      <input
+        type="text"
+        maxlength="150"
+        class="form-control"
+        placeholder="Nachname"
+        [(ngModel)]="lastName"
+      />
+    </div>
+
+    <label class="mt-2">Straße und Hausnummer</label>
+    <input
+      type="text"
+      class="form-control"
+      maxlength="150"
+      placeholder="Straße und Hausnummer"
+      [(ngModel)]="street"
+    />
+
+    <label class="mt-2">Postleitzahl</label>
+    <input
+      type="text"
+      class="form-control"
+      maxlength="5"
+      placeholder="PLZ eingeben"
+      [(ngModel)]="zipCode"
+    />
+    }
+    <!-- page 3 -->
+    @if(page() === 3) {
+    <h2>Welcher Pflegegrad ist vorhanden?</h2>
+
+    <h3>Wählen Sie bitte eine Option aus.</h3>
+    <input
+      type="radio"
+      [(ngModel)]="careLevel"
+      value="1"
+      class="btn-check"
+      name="options"
+      id="radioCareLevel1"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioCareLevel1">1</label>
+    <input
+      type="radio"
+      [(ngModel)]="careLevel"
+      value="2"
+      class="btn-check"
+      name="options"
+      id="radioCareLevel2"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioCareLevel2">2</label>
+    <input
+      type="radio"
+      [(ngModel)]="careLevel"
+      value="3"
+      class="btn-check"
+      name="options"
+      id="radioCareLevel3"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioCareLevel3">3</label>
+    <input
+      type="radio"
+      [(ngModel)]="careLevel"
+      value="4"
+      class="btn-check"
+      name="options"
+      id="radioCareLevel4"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioCareLevel4">4</label>
+    <input
+      type="radio"
+      [(ngModel)]="careLevel"
+      value="5"
+      class="btn-check"
+      name="options"
+      id="radioCareLevel5"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioCareLevel5">5</label>
+    <input
+      type="radio"
+      [(ngModel)]="careLevel"
+      value="0"
+      class="btn-check"
+      name="options"
+      id="radioCareLevel0"
+    />
+    <label class="btn btn-outline-primary me-2" for="radioCareLevel0"
+      >Kein Pflegegrad</label
+    >
+    }
+
+    <!-- page 4 -->
+    @if(page() === 4) {
+    <h2>Welche Leistungen werden benötigt?</h2>
+
+    <h3>Bitte wählen Sie eine oder mehrere Optionen aus.</h3>
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productWohnreinigung"
+      id="productWohnreinigung"
+    />
+    <label class="btn btn-outline-primary me-2" for="productWohnreinigung"
+      >Haus- und Wohnungsreinigung</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productFlurwoche"
+      id="productFlurwoche"
+    />
+    <label class="btn btn-outline-primary me-2" for="productFlurwoche"
+      >Flurwoche</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productEinkaufsservice"
+      id="productEinkaufsservice"
+    />
+    <label class="btn btn-outline-primary me-2" for="productEinkaufsservice"
+      >Einkaufsservice</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productBesorgungen"
+      id="productBesorgungen"
+    />
+    <label class="btn btn-outline-primary me-2" for="productBesorgungen"
+      >Besorgungen</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productFensterreinigung"
+      id="productFensterreinigung"
+    />
+    <label class="btn btn-outline-primary me-2" for="productFensterreinigung"
+      >Fensterreinigung</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productWaschen"
+      id="productWaschen"
+    />
+    <label class="btn btn-outline-primary me-2" for="productWaschen"
+      >Bügel- und Wäscheservice</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productTerminBegleitung"
+      id="productTerminBegleitung"
+    />
+    <label class="btn btn-outline-primary me-2" for="productTerminBegleitung"
+      >Terminbegleitung</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productBetreuung"
+      id="productBetreuung"
+    />
+    <label class="btn btn-outline-primary me-2" for="productBetreuung"
+      >Betreuung und Unterhaltung</label
+    >
+
+    <input
+      type="checkbox"
+      class="btn-check"
+      [(ngModel)]="productSonstiges"
+      id="productSonstiges"
+    />
+    <label class="btn btn-outline-primary me-2" for="productSonstiges"
+      >Sonstiges</label
+    >
+    }
+
+    <!-- page 5 -->
+    @if(page() === 5) {
+    <h2>Wie können wir Sie erreichen?</h2>
+
+    @if(isSelf() === false) {
+    <label class="mt-2">Vor- und Nachname</label>
+    <input
+      type="text"
+      class="form-control"
+      maxlength="150"
+      placeholder="Vor- und Nachname"
+      [(ngModel)]="contact"
+    />
+    }
+    <label class="mt-2">Telefonnummer</label>
+    <input
+      type="text"
+      class="form-control"
+      maxlength="150"
+      placeholder="Telefonnummer"
+      [(ngModel)]="phone"
+    />
+    }
+
+    <!-- page 6 -->
+    @if(page() === 6) {
+    <h2>Datenschutzerklärung</h2>
+
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [(ngModel)]="isAccepted"
+        id="checkPrivacy"
+      />
+      <label class="form-check-label" for="checkPrivacy">
+        Ich akzeptiere, dass meine eingegebenen Daten zum Zwecke der
+        Kontaktaufnahme elektronisch übertragen werden. Weitere Informationen
+        finden Sie in unserer Datenschutzerklärung
+      </label>
+    </div>
+
+    }
+
+    <!-- page 7 -->
+    @if(page() === 7) {
+    <h2>Geschafft!</h2>
+
+    <h3>
+      Vielen Dank, dass Sie sich die Zeit genommen haben, das Formular
+      auszufüllen.
+    </h3>
+    <h3>Wir melden uns umgehend bei Ihnen!</h3>
+    }
+
+    <!-- navigation -->
+    @if(page() > 1 && page() < 7) {
+    <button class="btn btn-primary btn-back" (click)="onBack()">Zurück</button>
+    } @if(page() < 6) {
+    <button
+      [disabled]="!canProceed()"
+      class="btn btn-primary btn-next"
+      (click)="onNext()"
+    >
+      Weiter
+    </button>
+    } @if(page() === 6) {
+    <button
+      [disabled]="!isAccepted()"
+      class="btn btn-primary btn-next"
+      (click)="onFinish()"
+    >
+      Anfrage senden
+    </button>
+    } } }
+  </div>
+</div>
