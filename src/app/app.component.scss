@@ -6,9 +6,14 @@
   margin-bottom: 1em;
 }
 
+input {
+  border-radius: var(--customer-border-radius);
+}
+
 .btn {
   border-color: var(--customer-color);
   color: var(--customer-color);
+  border-radius: var(--customer-border-radius);
 }
 
 .btn-next {

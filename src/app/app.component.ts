@@ -25,15 +25,19 @@ export class AppComponent implements OnInit {
       next: (next) => {
         document.documentElement.style.setProperty(
           '--customer-color',
-          `rgb(${next.color})`
+          next.color
         );
         document.documentElement.style.setProperty(
           '--customer-color-low',
-          `rgba(${next.color}, 0.1)`
+          `rgba(${this.toRgb(next.color)}, 0.1)`
         );
         document.documentElement.style.setProperty(
           '--customer-font-size',
           `${next.fontSize}pt`
+        );
+        document.documentElement.style.setProperty(
+          '--customer-border-radius',
+          next.isRounded ? '0.375rem' : '0'
         );
 
         this.invalidId.set(false);
@@ -153,5 +157,14 @@ export class AppComponent implements OnInit {
         },
         error: () => {},
       });
+  }
+
+  private toRgb(hex: string) {
+    const bigint = parseInt(hex.replace('#', ''), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+
+    return `${r}, ${g}, ${b}`;
   }
 }
