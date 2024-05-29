@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 // required to get $orange variable
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
@@ -24,9 +22,9 @@ $theme-colors: map-merge(
 html,
 body {
   height: 100%;
-  width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 h2 {

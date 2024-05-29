@@ -2,6 +2,24 @@
   font-size: var(--customer-font-size);
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  border-top: 1px solid #e9ecef;
+}
+
 .pager {
   margin-bottom: 1em;
 }
@@ -17,16 +35,12 @@ input {
 }
 
 .btn-next {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  margin-left: auto;
   background-color: var(--customer-color);
 }
 
 .btn-back {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  margin-right: auto;
   background-color: var(--customer-color);
 }
 

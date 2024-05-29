@@ -102,8 +102,6 @@ export class AppComponent implements OnInit {
           this.productSonstiges()
         );
       case 5:
-        console.log(this.contact() != null || this.isSelf() == true);
-        console.log(this.phone() != null);
         return (
           (this.contact() != null || this.isSelf() == true) &&
           this.phone() != null
